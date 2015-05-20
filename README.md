@@ -1,12 +1,18 @@
 # v1
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+Aight squad this one is a bit different from the api
 
-## Build & development
+Steps to run this bad boy
 
-Run `grunt` for building and `grunt serve` for preview.
+1) Install Node/npm
 
-## Testing
+2) Install bower, grunt and yeoman using npm
 
-Running `grunt test` will run the unit tests with karma.
+3) In console, go to project directory
+
+4) Run $ bower install
+
+5) Run $ grunt serve
+
+EZPZ the project should be up and running.  Again if this doesn't work let me know, and I will figure out what step I
+forgot to add here
