@@ -1,0 +1,38 @@
+<div class="container">
+
+	<div class="col-md-6">
+		<form class="form-signin">
+
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<input class="form-control" ng-model="email" placeholder="Email address" required autofocus>
+
+			<input type="password" class="form-control" ng-model="pwd" placeholder="Password" required>
+
+			<button class="btn btn-lg btn-primary btn-block" ng-click="login(email, pwd)">Sign in</button>
+		</form>
+	</div>
+	<div class="col-md-6">
+		<form class="form-signin">
+			
+			<h2 class="form-signin-heading">Create Account</h2>
+			
+			<input class="form-control" ng-model='new_user.flname' placeholder="Name" required>
+			
+			<input class="form-control" ng-model='new_user.email' placeholder="Email" required>
+			
+			<input class="form-control" ng-model='new_user.address' placeholder="Address" required>
+			
+			<input class="form-control" ng-model='new_user.phone' placeholder="Phone" required>
+			
+			<input type="password" class="form-control" ng-model='new_user.password' placeholder="Password" required>
+			
+			<button class="btn btn-lg btn-primary btn-block" ng-click="register(new_user)">Register</button>
+
+		</form>
+	</div>
+
+
+<button class="btn btn-lg btn-primary btn-block" ng-click="logout()">Logout</button>
+	
+
+</div> <!-- /container -->
