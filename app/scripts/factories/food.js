@@ -8,41 +8,19 @@
  * Controller of the v1App
  */
 angular.module('v1App')
-	.factory('foodFactory', function(){
+	.factory('foodFactory', ['$http', function($http){
 
 		var service = {};
 
-		var sampleMenu = {
-			1 : {
-				'name' : 'spaghetti',
-				'price' : 5
-			},
-			2 : {
-				'name' : 'burrito',
-				'price' : 7
-			},
-			3 : {
-				'name' : 'steak',
-				'price' : 13
-			},
-			4 : {
-				'name' : 'salad',
-				'price' : 5
-			},
-			5 : {
-				'name' : 'turnip',
-				'price' : 9001
-			},
-		};
+		var baseURL = 'http://localhost:3000/menu/';
 
-		service.getMenu = function () {
-			return sampleMenu;
+		service.getMenu = function (callback) {
+			$http.get(baseURL).success(callback);
 		};
-
 
 		service.fuckyougrunt = function() {
 			
 		};
 		return service;
 
-	});
+	}]);

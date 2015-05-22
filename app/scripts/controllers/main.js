@@ -10,18 +10,21 @@
 angular.module('v1App')
   .controller('MainCtrl', 
   function (
-    $scope, 
-    $cookies, 
-    $cookieStore, 
-    $location, 
-    $http, 
-    SweetAlert, 
+    $scope,
+    $sessionStorage,
+    $cookies,
+    $cookieStore,
+    $location,
+    $http,
+    SweetAlert,
     userFactory
   ) {
     // Temporary variables for testing purposes, eventually
     // will allow for user entry of course
     $scope.email = 'richguy@gotham.com';
     $scope.pwd = 'im_batman';
+
+    $scope.$storage = $sessionStorage;
 
     // Login Function
   	$scope.login = function (username, password) {
@@ -32,10 +35,14 @@ angular.module('v1App')
         // If user exists, send user to account page
         // Otherwise error
         if (userID !== -1) {
-          $cookieStore.put('userID', userID);
+          $sessionStorage.currID = userID;
           $location.path('/account');
         } else {
-          SweetAlert.swal('Incorrect Login');
+          SweetAlert.swal(
+            'Incorrect Login',
+            'Please Try Again', 
+            'error'
+          );
         }
       });
   	};
@@ -43,17 +50,16 @@ angular.module('v1App')
     // Register Function
     $scope.register = function (user) {
       // Call factory built to handle all user related data
-      userFactory.register(user, function(data) {
-        // Process data returned by factory
-        var userID = data;
-        // temporary test to determine success of call
-        $scope.registerTest = userID;
-      });
+      userFactory.register(user);
+      SweetAlert.swal(
+        'Welcome to WeCook', 
+        'We sent you an email to confirm the account,\n once you respond we can get cooking',
+        'success'
+        );
     };
 
-    $scope.logout = function () {
-      $cookieStore.remove('AYYY');
-      $cookieStore.remove('userID');
+    $scope.logout = function() {
+      $sessionStorage.$reset();
     };
 
   });

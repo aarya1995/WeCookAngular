@@ -13,20 +13,20 @@ angular.module('v1App')
 
 		var service = {};
 
+		var baseURL = 'http://localhost:3000/users/';
+
+		service.currID = 1;
+
 		service.login = function (username, password, callback){
-			var loginURL = 'http://localhost:3000/users/login/';
 			var complete = String(
-				loginURL + 
-				username + 
-				'/' + 
-				password
+				baseURL + 'login/' + 
+				username + '/' + password
 			);
 			$http.get(complete).success(callback);
 		};
 
 		service.register = function (user, callback) {
-			var registerURL = 'http://localhost:3000/users/';
-			$http.post(registerURL, 
+			$http.post(baseURL, 
 				{
 					name: user.flname, 
 					password: user.password,

@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngStorage',
     'oitozero.ngSweetAlert'
   ])
   .config(function ($routeProvider) {

@@ -10,17 +10,29 @@
  
 angular.module('v1App')
   .controller('AccountCtrl', 
-  function ($scope, $location, $cookies,$cookieStore, SweetAlert, userFactory, foodFactory) {
+  function ($scope, 
+    $location, 
+    $localStorage,
+    $sessionStorage,
+    SweetAlert, 
+    userFactory, 
+    foodFactory) {
   	// Temporary console log that lists all cookies
-    console.log($cookies);
 
+    $scope.$storage = $sessionStorage;
+
+    if (typeof $scope.$storage.currID === 'undefined' || $scope.$storage.currID === null){
+      $location.path('/');
+    }
+
+    foodFactory.getMenu(function(data) {
+      $scope.menu = data;
+    });
 
     $scope.logout = function () {
-      $cookieStore.remove('AYYY');
-      $cookieStore.remove('userID');
+      $sessionStorage.$reset();
       $location.path('/');
     };
-
 
   	$scope.fuckyougrunt = function () {
   		userFactory.fuckyougrunt();
